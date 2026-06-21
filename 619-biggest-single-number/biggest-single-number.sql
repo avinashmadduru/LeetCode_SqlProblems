@@ -1,8 +1,7 @@
-WITH cte AS (
+SELECT MAX(num) AS num
+FROM(
 SELECT num
-FROM MyNumbers
+FROM MyNumbers 
 GROUP BY num 
-HAVING COUNT(num)=1
-ORDER BY num DESC
-)SELECT MAX(num) AS num
-FROM cte;
+HAVING COUNT(num) = 1
+) AS mx;
