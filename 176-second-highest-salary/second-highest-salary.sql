@@ -1,3 +1,7 @@
-SELECT MAX(salary) AS SecondHighestSalary 
-FROM employee 
-WHERE salary NOT IN (SELECT MAX(salary) FROM employee)
+WITH cte AS (
+SELECT *, DENSE_RANK() OVER(ORDER BY salary DESC) AS rnk
+FROM Employee
+ORDER BY salary DESC
+)SELECT MAX(salary) AS SecondHighestSalary
+FROM cte 
+WHERE rnk = 2;
